@@ -21,7 +21,7 @@ namespace Rendering {
 
   struct SpriteInfo{
     std::string fileName;
-    int offX = 0, offY = 0, width = 0, height = 0, layer = 0;
+    int offX = 0, offY = 0, width = 0, height = 0, layer = 0, angle = 0;
   };
 
   struct SDLSurface{
