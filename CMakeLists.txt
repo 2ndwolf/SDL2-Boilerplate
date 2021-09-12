@@ -1,0 +1,47 @@
+cmake_minimum_required(VERSION 3.16)
+project(ProjectName)
+
+string(TOLOWER ${PROJECT_NAME} EXECUTABLE)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_BUILD_TYPE Debug)
+
+include_directories(
+		${PROJECT_SOURCE_DIR}/include
+		${PROJECT_SOURCE_DIR}/dependencies/
+		${PROJECT_SOURCE_DIR}/dependencies/SDL2
+		# ${PROJECT_SOURCE_DIR}/dependencies/SDL2_image-2.0.5/include/
+		.
+)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}../bin)
+
+file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
+file(GLOB NESTEDSOURCES ${PROJECT_SOURCE_DIR}/src/*/*.cpp)
+file(GLOB NESTEDSOURCES2 ${PROJECT_SOURCE_DIR}/src/*/*/*.cpp)
+file(GLOB HEADERS ${PROJECT_SOURCE_DIR}/include/*.h)
+
+set(CMAKE_CXX_STANDARD_LIBRARIES "-static-libgcc -static-libstdc++ ${CMAKE_CXX_STANDARD_LIBRARIES}")
+ 
+find_library(SDL2_LIBRARY 
+    NAMES SDL2
+    PATHS ${PROJECT_SOURCE_DIR}/dependencies/SDL2/bin
+    NO_CMAKE_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+)
+find_library(SDL2_IMAGE 
+    NAMES SDL2_image
+    PATHS ${PROJECT_SOURCE_DIR}/dependencies/SDL2/bin
+    NO_CMAKE_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+)
+
+# add_compile_definitions(_GLIBCXX_USE_CXX11_ABI=0)
+
+add_executable(${EXECUTABLE} ${SOURCES} ${NESTEDSOURCES} ${NESTEDSOURCES2} ${HEADERS})
+
+target_link_libraries(${EXECUTABLE} ${SDL2_LIBRARY} ${SDL2_IMAGE})
