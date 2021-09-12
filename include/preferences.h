@@ -4,12 +4,11 @@
 
 #include "input.h"
 
-// for params
-// Input::Keybinds::keys[PARAM1].push_back(PARAMX)
 
 namespace Preferences {
   struct userPreferences {
-    std::string playerImage;
+    // std::string playerImage;
+    std::map<std::string, std::string> sounds, images;
     std::map<std::string, std::vector<SDL_Scancode>> keys;
   };
 
