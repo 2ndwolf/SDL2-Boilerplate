@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <string>
 
@@ -11,6 +12,7 @@
 namespace Preferences {
   userPreferences parseIni(const std::string &fileName){
     userPreferences uPrefs;
+    bool doubleDot = false;
 
     Input::loadScancodes();
 
@@ -19,6 +21,13 @@ namespace Preferences {
     while (std::getline(infile, line)){
 
         if(Utility::split(line, ' ')[0].rfind("#",0) != std::string::npos) continue;
+
+        if(line.find("..") != std::string::npos){
+          doubleDot = true;
+          std::cout << Utility::strip(line, '.') << std::endl;
+          continue;
+        }
+
         std::vector<std::string> params = Utility::split(line, ':');
 
         if(params[0].rfind("IMAGE",0) != std::string::npos){
@@ -40,6 +49,7 @@ namespace Preferences {
         }
     }
 
+    if(doubleDot) std::cout << "Note: lines containing '..' are printed instead of being parsed." << std::endl;
     return uPrefs;
   }
 }
