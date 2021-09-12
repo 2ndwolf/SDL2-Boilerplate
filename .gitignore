@@ -1,4 +1,6 @@
 *
+!assets
+!assets/uPref.ini
 !include
 !include/**/**/**/**/**/*
 !src
