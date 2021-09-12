@@ -35,7 +35,6 @@ namespace Rendering {
         printf("error initializing SDL: %s\n", SDL_GetError()); 
     }
 
-    // sdlWindow = NULL;
     sdlWindow = SDL_CreateWindow("GAME",
                             SDL_WINDOWPOS_CENTERED, 
                             SDL_WINDOWPOS_CENTERED, 
@@ -47,9 +46,6 @@ namespace Rendering {
   
     // creates a renderer to render our images 
     sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, render_flags); 
-
-    // layers[4];
-    // Render::surfaceList = new SurfaceList;
 
     return 0;
   }
@@ -83,10 +79,7 @@ namespace Rendering {
       SDL_FreeSurface(it->second->sur);
     }
 
-    // destroy renderer 
     SDL_DestroyRenderer(sdlRenderer); 
-
-    // destroy window 
     SDL_DestroyWindow(sdlWindow);
   }
 
@@ -100,22 +93,17 @@ namespace Rendering {
     return renderable;
   }
 
-  // Constructor for Renderable
   Renderable::Renderable(SpriteInfo info){
-    std::cout << info.fileName << std::endl;
     if(!Render::getSurfaces()->count(info.fileName)){
       SDLSurface* newSur;
       newSur->sur = IMG_Load(info.fileName.c_str());
       newSur->useCount = 1;
-      // std::cout << "YO";
-      // SDL_Surface* image = IMG_Load(fileName.c_str());
       Render::getSurfaces()->insert({info.fileName, newSur}); 
-      // image->
     } else Render::getSurface(info.fileName)->useCount += 1;
 
     fileName = info.fileName;
     layer = info.layer;
-    // loads image to our graphics hardware memory. 
+    angle = info.angle;
     sdlTexture = SDL_CreateTextureFromSurface(Render::getRenderer(), Render::getSurface(info.fileName)->sur);
   
     srcRect.x = info.offX;
@@ -137,13 +125,8 @@ namespace Rendering {
       sdlRect.y = 0;
     }
   
-    // Entity position component + x, y
-
-    // i++;
   }
 
-
-  //// Destructor for Renderable
   Renderable::~Renderable(){
     SDL_DestroyTexture(sdlTexture);
     if(Render::getSurface(fileName)->useCount > 1) Render::getSurface(fileName)->useCount -= 1;

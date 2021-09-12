@@ -20,10 +20,6 @@ namespace Audio{
 
   void init(){
     devices();
-    // meowctave();
-
-    // currentNote = -1;
-
   }
 
   void devices(){
@@ -36,25 +32,4 @@ namespace Audio{
     Device::currentId = -1;
   }
 
-  // void meowctave(){
-  //   MeowCtave::octave[SDL_SCANCODE_A] = {"7"};
-  //   MeowCtave::octave[SDL_SCANCODE_B] = {"5"};
-  //   MeowCtave::octave[SDL_SCANCODE_C] = {"4"};
-  //   MeowCtave::octave[SDL_SCANCODE_D] = {"4"};
-  //   MeowCtave::octave[SDL_SCANCODE_E] = {"5"};
-  //   MeowCtave::octave[SDL_SCANCODE_F] = {"5"};
-  //   MeowCtave::octave[SDL_SCANCODE_G] = {"3"};
-  //   MeowCtave::octave[SDL_SCANCODE_H] = {"5"};
-  //   MeowCtave::octave[SDL_SCANCODE_I] = {"7"};
-  //   MeowCtave::octave[SDL_SCANCODE_J] = {"4"};
-  //   MeowCtave::octave[SDL_SCANCODE_K] = {"4"};
-  //   MeowCtave::octave[SDL_SCANCODE_L] = {"5"};
-  //   MeowCtave::octave[SDL_SCANCODE_M] = {"4"};
-  //   MeowCtave::octave[SDL_SCANCODE_N] = {"8"};
-  //   MeowCtave::octave[SDL_SCANCODE_O] = {"7"};
-  //   MeowCtave::octave[SDL_SCANCODE_P] = {"5"};
-  //   MeowCtave::octave[SDL_SCANCODE_Q] = {"5"};
-  //   MeowCtave::octave[SDL_SCANCODE_R] = {"4"};
-  //   MeowCtave::octave[SDL_SCANCODE_S] = {"6"};
-  // }
 }

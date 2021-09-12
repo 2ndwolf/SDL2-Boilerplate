@@ -14,21 +14,19 @@ namespace Input {
 
   std::vector<SDL_Scancode> findScancode(std::vector<std::string> keycodeAsStr){
     std::vector<SDL_Scancode> codes;
-    // for(int i = 0; i < std::size(scancodeStrVec); i++){
-      for(int i = 0; i < keycodeAsStr.size(); i++){
-        std::vector<std::string>::iterator it = std::find(scancodeStrVec.begin(), scancodeStrVec.end(), keycodeAsStr[i]);
-        int index =  it - scancodeStrVec.begin();
 
-        if( it != scancodeStrVec.end() ) codes.push_back((SDL_Scancode) index);
-        else codes.push_back(SDL_SCANCODE_UNKNOWN);
-      }
-    // }
+    for(int i = 0; i < keycodeAsStr.size(); i++){
+      std::vector<std::string>::iterator it = std::find(scancodeStrVec.begin(), scancodeStrVec.end(), keycodeAsStr[i]);
+      int index =  it - scancodeStrVec.begin();
+
+      if( it != scancodeStrVec.end() ) codes.push_back((SDL_Scancode) index);
+      else codes.push_back(SDL_SCANCODE_UNKNOWN);
+    }
 
     return codes;
   }
 
   void loadScancodes(){
-    // scancodeStrVec.resize((int)SDL_NUM_SCANCODES, "UNKNOWN");
 
     scancodeStrVec[0] = "UNKNOWN";
     scancodeStrVec[4] = "A";
@@ -276,7 +274,5 @@ namespace Input {
     scancodeStrVec[284] = "APP2";
     scancodeStrVec[285] = "AUDIOREWIND";
     scancodeStrVec[286] = "AUDIOFASTFORWARD";
-
-    // return scancodeStrVec;
   }
 }

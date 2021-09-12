@@ -8,7 +8,6 @@
 #include <string>
 
 #include "SDL2/SDL_audio.h"
-// #include "dependencies/SDL2/SDL_scancode.h"
 
 
 namespace Audio{
@@ -19,7 +18,6 @@ namespace Audio{
     static SDL_AudioDeviceID deviceId;
     static std::vector<SDL_AudioDeviceID> deviceIds;
     static int currentId;
-    // static std::map<Uint8*, Uint32> Devices;
 
   };
   
@@ -29,29 +27,10 @@ namespace Audio{
     Uint8 *wav_buffer;
   };
 
-  // static const char* MeowMix[32] =
-  //   {"G","Gb","E","D",
-  //   "G","Gb","E","D",
-  //   "G","Gb","G","Ab",
-  //   "A","Gb","E","D",
-  //   "A","Gb","E","D",
-  //   "A","Gb","E","D",
-  //   "A","Gb","A","Bb",
-  //   "B","G","E","D"};
-    
-  // static int currentNote;
-
-  // class MeowCtave{
-  //   public:
-  //   static std::map<SDL_Scancode, char*> octave;
-  // };
-
   void init();
   void devices();
-  // void meowctave();
 
-
-  void play(const char * sound);
+  void play(std::string sound);
   void closeAllAudioDevices();
 
 

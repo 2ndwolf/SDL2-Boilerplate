@@ -5,8 +5,6 @@
 #include "SDL2/SDL_audio.h"
 #include "SDL2/SDL_scancode.h"
 
-// #include "SDL2/SDL_mixer.h"
-
 #include "audio.h"
 
 std::map<std::string, Audio::Sound> LoadedSounds;
@@ -16,7 +14,8 @@ using namespace std;
 
 namespace Audio{
 
-  void play(const char * soundName){
+  void play(std::string fileName){
+    const char * soundName = (const char *) fileName.c_str();
     if(LoadedSounds.find((std::string)soundName) == LoadedSounds.end()){
       std::cout << "Loading new sound..." << std::endl;
       Sound sample = Sound();
@@ -46,7 +45,6 @@ namespace Audio{
         if(Device::currentId == -1){
           SDL_PauseAudioDevice(Device::deviceId, 0);
         }
-        // cout << Device::deviceId << endl;
       }
     }
     // SDL_Delay(500);
